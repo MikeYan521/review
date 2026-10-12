@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 移动端 viewport：跟随设备宽度、禁止缩放、适配刘海屏 -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>间隔复习助手</title>
+    <meta
+      name="description"
+      content="记录每天学习的内容，自动按 1/2/4/8/16/32 天安排复习计划。"
+    />
+
+    <!-- PWA：manifest / 主题色 / 图标 -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="间隔复习" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <script type="module" crossorigin src="./assets/index-CWOOYun2.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-VKqE4v_V.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 注册 Service Worker：预缓存应用外壳，断网也能打开 -->
+    <script>
+      (function () {
+        if (!("serviceWorker" in navigator)) return;
+        // 开发服务器（直接加载 /src/main.tsx）不注册，避免缓存干扰调试
+        if (document.querySelector('script[src*="/src/main"]')) return;
+
+        // 根目录部署是 "/"，GitHub Pages 项目站点是 "/仓库名/"，这里按 manifest 的真实地址推导
+        var manifestLink = document.querySelector('link[rel="manifest"]');
+        var basePath = "/";
+        try {
+          basePath = new URL(manifestLink ? manifestLink.getAttribute("href") : "manifest.json", document.baseURI)
+            .pathname
+            .replace(/manifest\.json$/, "");
+        } catch (error) {
+          basePath = "/";
+        }
+
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register(basePath + "sw.js", { scope: basePath }).catch(function () {
+            // 注册失败不影响应用本身
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

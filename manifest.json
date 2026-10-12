@@ -1,0 +1,53 @@
+{
+  "id": ".",
+  "name": "间隔复习助手",
+  "short_name": "间隔复习",
+  "description": "记录每天学习的内容，自动按 1/2/4/8/16/32 天安排复习计划。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "今日任务",
+      "url": ".",
+      "description": "查看今天要学什么、要复习什么"
+    },
+    {
+      "name": "月视图",
+      "url": "calendar",
+      "description": "看未来一个月的复习安排"
+    },
+    {
+      "name": "添加学习内容",
+      "url": "add",
+      "description": "记录今天学到的内容"
+    }
+  ]
+}
